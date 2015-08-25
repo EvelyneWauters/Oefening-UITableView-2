@@ -13,8 +13,8 @@
 
 @end
 
-
-@interface FontTableViewController : UITableViewController
+//Geef aan dat de UITableViewController het protocol UISearchBarDelegate implementeert, dit doe je door <UISearchBarDelegate> toe te voegen achter de interface declaratie.
+@interface FontTableViewController : UITableViewController <UISearchBarDelegate>
 @property (weak, nonatomic) id <FontProtocol> fontDelegate;
 
 @end

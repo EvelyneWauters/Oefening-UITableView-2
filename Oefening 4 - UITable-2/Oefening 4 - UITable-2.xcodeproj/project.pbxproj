@@ -19,6 +19,7 @@
 		BEE3EDE51B86015D001F3AB6 /* Oefening_4___UITable_2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE3EDE41B86015D001F3AB6 /* Oefening_4___UITable_2Tests.m */; };
 		BEE3EDF31B86089A001F3AB6 /* ColorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE3EDF21B86089A001F3AB6 /* ColorTableViewCell.m */; };
 		BEE3EDF91B860A00001F3AB6 /* ColorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE3EDF81B860A00001F3AB6 /* ColorTableViewController.m */; };
+		BEEB13471B8C536100BFB89C /* SearchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEB13461B8C536100BFB89C /* SearchBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		BEE3EDF21B86089A001F3AB6 /* ColorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorTableViewCell.m; path = Classes/ColorTableViewCell.m; sourceTree = "<group>"; };
 		BEE3EDF71B860A00001F3AB6 /* ColorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorTableViewController.h; path = Classes/ColorTableViewController.h; sourceTree = "<group>"; };
 		BEE3EDF81B860A00001F3AB6 /* ColorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorTableViewController.m; path = Classes/ColorTableViewController.m; sourceTree = "<group>"; };
+		BEEB13451B8C536100BFB89C /* SearchBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBarController.h; path = Classes/SearchBarController.h; sourceTree = "<group>"; };
+		BEEB13461B8C536100BFB89C /* SearchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchBarController.m; path = Classes/SearchBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 				BE9FC0A71B8B24A5006B3A70 /* FontTableViewController.m */,
 				BE9FC0A91B8B3224006B3A70 /* FontTableViewCell.h */,
 				BE9FC0AA1B8B3224006B3A70 /* FontTableViewCell.m */,
+				BEEB13451B8C536100BFB89C /* SearchBarController.h */,
+				BEEB13461B8C536100BFB89C /* SearchBarController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				BEE3EDD11B86015D001F3AB6 /* ViewController.m in Sources */,
 				BEE3EDF31B86089A001F3AB6 /* ColorTableViewCell.m in Sources */,
 				BEE3EDF91B860A00001F3AB6 /* ColorTableViewController.m in Sources */,
+				BEEB13471B8C536100BFB89C /* SearchBarController.m in Sources */,
 				BE9FC0A81B8B24A5006B3A70 /* FontTableViewController.m in Sources */,
 				BEE3EDCE1B86015D001F3AB6 /* AppDelegate.m in Sources */,
 				BEE3EDCB1B86015D001F3AB6 /* main.m in Sources */,

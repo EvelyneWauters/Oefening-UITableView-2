@@ -51,6 +51,7 @@
     [super viewWillAppear:YES];
     self.colorLabel.backgroundColor = self.color;
     self.colorLabelText.textColor = self.color;
+    //Rond de UIView die de geselecteerde kleur weergeeft af
     self.colorLabel.layer.cornerRadius = 11.0;
     self.fontLabel.textColor = self.color;
     self.fontLabel.font = self.font;

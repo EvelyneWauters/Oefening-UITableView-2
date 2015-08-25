@@ -16,34 +16,47 @@
 
 @implementation FontTableViewController
 
-- (void) fillFunWithFontsArrays {
+- (void) fillFunWithFontsArrays :(NSString*) searchString {
+    
     self.funWithFonts = [[NSMutableDictionary alloc] init];
-
+    
+    //array with font family names
     NSArray * fontFamilies = [UIFont familyNames];
     
-    for(int i = 0; i < fontFamilies.count; i++)   {
     
-        NSArray *fontNames = [UIFont fontNamesForFamilyName:fontFamilies[i]];
-        [self.funWithFonts setObject:fontNames forKey:fontFamilies[i]];
+    //filter fontfamilies by searchString using a custom predicate
+    if (searchString != nil) {
+        NSPredicate *sPredicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchString];
+        fontFamilies = [fontFamilies filteredArrayUsingPredicate:sPredicate];
+    }
+    
+    //sort array alphabetically
+    fontFamilies = [fontFamilies sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    
+    
+    //fill array with font names per key of family name
+    for (NSString * fontFamily in fontFamilies) {
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:fontFamily];
+        [self.funWithFonts setObject:fontNames forKey:fontFamily];
     }
 }
 
 
+- (NSString*) returnKeyForSection :(NSInteger) section   {
+    NSArray * sortedKeys = [self.funWithFonts.allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    NSString * key = sortedKeys[section];
+    return key;
+}
+
+
 - (NSArray*) returnAllFontNames :(NSInteger) section   {
-    
-    NSArray *allKeys = self.funWithFonts.allKeys;
-    NSArray *allKeysSorted = [allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-
-
-    NSArray *allFontNames = [self.funWithFonts.allValues objectAtIndex:section];
-    NSArray *sortedKeys = [allFontNames sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-
-    return sortedKeys;
+    NSString* key = [self returnKeyForSection:section];
+    return [self.funWithFonts objectForKey:key];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fillFunWithFontsArrays];
+    [self fillFunWithFontsArrays:nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -70,7 +83,13 @@
 }
 
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return[self returnKeyForSection:section];
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     FontTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"font cell" forIndexPath:indexPath];
     
     NSArray *allFontNames = [self returnAllFontNames:indexPath.section];
@@ -94,6 +113,12 @@
 }
 
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self fillFunWithFontsArrays:searchText];
+    [self.tableView reloadData];
+    
+    
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -138,5 +163,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

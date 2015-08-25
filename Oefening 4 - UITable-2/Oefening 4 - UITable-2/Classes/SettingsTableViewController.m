@@ -8,9 +8,13 @@
 
 #import "SettingsTableViewController.h"
 #import "ColorTableViewController.h"
+#import "FontTableViewController.h"
 @interface SettingsTableViewController ()
 @property (weak, nonatomic) IBOutlet UIView *colorLabel;
 @property (weak, nonatomic) UIColor* color;
+@property (weak, nonatomic) IBOutlet UILabel *fontLabel;
+@property (weak, nonatomic) UIFont* font;
+@property (weak, nonatomic) IBOutlet UILabel *colorLabelText;
 
 @end
 
@@ -21,9 +25,14 @@
 }
 
 
+- (void) passFont: (NSString *) fontName    {
+    self.font = [UIFont fontWithName:fontName size:15];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.colorLabel.backgroundColor = self.color;
+    self.fontLabel.font = self.font;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -41,11 +50,16 @@
 - (void) viewWillAppear:(BOOL)animated  {
     [super viewWillAppear:YES];
     self.colorLabel.backgroundColor = self.color;
+    self.colorLabelText.textColor = self.color;
+    self.colorLabel.layer.cornerRadius = 11.0;
+    self.fontLabel.textColor = self.color;
+    self.fontLabel.font = self.font;
 }
 
 - (void) viewDidAppear:(BOOL)animated  {
     [super viewWillAppear:YES];
     self.colorLabel.backgroundColor = self.color;
+    self.fontLabel.font = self.font;
 }
 
 
@@ -122,6 +136,9 @@
         ColorTableViewController *controller = [segue destinationViewController];
         controller.delegate = self;
 
+    } else if([segue.destinationViewController isKindOfClass : [FontTableViewController class] ]) {
+        FontTableViewController *fontController = [segue destinationViewController];
+        fontController.fontDelegate = self;
     }
     
     // Get the new view controller using [segue destinationViewController].

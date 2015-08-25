@@ -96,6 +96,8 @@
                     <navigationItem key="navigationItem" id="bLL-st-5Ro"/>
                     <connections>
                         <outlet property="colorLabel" destination="6bO-T2-kjI" id="Dxt-nw-aSM"/>
+                        <outlet property="colorLabelText" destination="Gf0-rU-IQL" id="86t-YT-ZQR"/>
+                        <outlet property="fontLabel" destination="yQG-R8-xse" id="nJl-hK-eth"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqP-nX-eeY" userLabel="First Responder" sceneMemberID="firstResponder"/>

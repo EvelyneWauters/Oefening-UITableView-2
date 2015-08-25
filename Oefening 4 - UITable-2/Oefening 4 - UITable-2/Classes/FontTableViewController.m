@@ -18,9 +18,27 @@
 
 - (void) fillFunWithFontsArrays {
     self.funWithFonts = [[NSMutableDictionary alloc] init];
+
+    NSArray * fontFamilies = [UIFont familyNames];
     
+    for(int i = 0; i < fontFamilies.count; i++)   {
     
-    [self.funWithFonts addObject:[UIFont fontWithName: @"HelveticaNeue" size: 25]];
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:fontFamilies[i]];
+        [self.funWithFonts setObject:fontNames forKey:fontFamilies[i]];
+    }
+}
+
+
+- (NSArray*) returnAllFontNames :(NSInteger) section   {
+    
+    NSArray *allKeys = self.funWithFonts.allKeys;
+    NSArray *allKeysSorted = [allKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+
+    NSArray *allFontNames = [self.funWithFonts.allValues objectAtIndex:section];
+    NSArray *sortedKeys = [allFontNames sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+    return sortedKeys;
 }
 
 - (void)viewDidLoad {
@@ -42,25 +60,39 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+    return self.funWithFonts.count;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return self.funWithFonts.count;
+    NSArray *allFontNames = [self returnAllFontNames:section];
+    return allFontNames.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FontTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"font cell" forIndexPath:indexPath];
-    UIFont* font = self.funWithFonts[indexPath.row];
     
-    cell.fontNameLabel.text = font.familyName;
+    NSArray *allFontNames = [self returnAllFontNames:indexPath.section];
+    NSString* fontName = allFontNames[indexPath.row];
+    UIFont * font = [UIFont fontWithName:fontName size:17];
+    
+    cell.fontNameLabel.text = fontName;
     cell.fontNameLabel.font = font;
-
+    
     return cell;
 }
+
+
+- (void)tableView:(UITableView * )tableView didSelectRowAtIndexPath:(NSIndexPath * )indexPath   {
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSArray *allFontNames = [self returnAllFontNames:indexPath.section];
+    NSString *chosenFont = [allFontNames objectAtIndex:indexPath.row];
+    [self.fontDelegate passFont: chosenFont];
+    
+}
+
 
 
 /*

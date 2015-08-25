@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol FontProtocol
+
+- (void) passFont: (NSString*) fontName;
+
+@end
+
 
 @interface FontTableViewController : UITableViewController
+@property (weak, nonatomic) id <FontProtocol> fontDelegate;
 
 @end

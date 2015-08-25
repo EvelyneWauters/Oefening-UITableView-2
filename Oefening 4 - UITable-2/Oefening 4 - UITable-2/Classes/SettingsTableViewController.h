@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorTableViewController.h"
-@interface SettingsTableViewController : UITableViewController <colorProtocol>
+#import "FontTableViewController.h"
+@interface SettingsTableViewController : UITableViewController <colorProtocol, FontProtocol>
 
 @end
